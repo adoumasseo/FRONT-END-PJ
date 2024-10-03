@@ -8,7 +8,10 @@ const api = axios.create({
 });
 
 export const register = (data) => {
-  return api.post('/register', data);
+  return api.post('/register', data)
+    .then( response => {
+      localStorage.setItem('user_role', response.data.user.role)
+    });
 };
 
 export const login = (data) => {
