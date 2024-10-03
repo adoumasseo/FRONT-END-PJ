@@ -5,7 +5,7 @@
     </div>
     <div class="app-content">
       <div v-if="$route.path === '/'" class="default_app_content">
-        <img src="/public/images/home.png" alt="Home Image">
+        <img src="/images/home.png" alt="Home Image">
         <div class="explanatory_text">
           <h1>
             WELCOME TO NOTES

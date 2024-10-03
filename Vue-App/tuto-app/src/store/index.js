@@ -27,10 +27,11 @@ export default createStore({
     async register({ commit }, data) {
       try {
         const response = await auth.register(data);
+        console.log(response);
         commit('SET_USER', response.data.user);
       } catch (err) {
         throw new Error('Registration failed');
-        console.log(err);
+        console.error('Error during registration:', err);
       }
     },
     logout({ commit }) {

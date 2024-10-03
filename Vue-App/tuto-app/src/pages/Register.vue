@@ -82,7 +82,7 @@ const handleSubmit = async () => {
         try{
             await store.dispatch('register', data);
             router.push('/dashboard/users')
-        }catch  (err) { 
+        }catch (err) { 
             console.log(err);
         }
     }
