@@ -16,14 +16,6 @@ export const getBoards = () => {
   });
 };
 
-// Fetch a single board by its ID
-export const getBoardById = (id) => {
-  return api.get(`user/boards/${id}`, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
-    },
-  });
-};
 
 // Create a new board
 export const createBoard = (data) => {
@@ -35,8 +27,8 @@ export const createBoard = (data) => {
 };
 
 // Update an existing board
-export const updateBoard = (id, data) => {
-  return api.put(`user/boards/${id}`, data, {
+export const updateBoard = (boardId, data) => {
+  return api.put(`user/boards/${boardId}`, data, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
     },
@@ -44,8 +36,8 @@ export const updateBoard = (id, data) => {
 };
 
 // Delete a board by its ID
-export const deleteBoard = (id) => {
-  return api.delete(`user/boards/${id}`, {
+export const deleteBoard = (boardId) => {
+  return api.delete(`user/boards/${boardId}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
     },

@@ -27,7 +27,7 @@ export const getTaskById = (boardId, taskId) => {
 
 // Create a new task for a specific board
 export const createTask = (boardId, data) => {
-  return api.post(`user/boards/${boardId}/tasks`, data, {
+  return api.post(`user/boards/${boardId}`, data, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
     },
@@ -35,8 +35,8 @@ export const createTask = (boardId, data) => {
 };
 
 // Update an existing task
-export const updateTask = (boardId, taskId, data) => {
-  return api.put(`user/boards/${boardId}/tasks/${taskId}`, data, {
+export const updateTask = (taskId, data) => {
+  return api.put(`/user/tasks/${taskId}`, data, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
     },
@@ -45,7 +45,7 @@ export const updateTask = (boardId, taskId, data) => {
 
 // Delete a task by its ID
 export const deleteTask = (boardId, taskId) => {
-  return api.delete(`user/boards/${boardId}/tasks/${taskId}`, {
+  return api.delete(`/user/tasks/${taskId}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
     },

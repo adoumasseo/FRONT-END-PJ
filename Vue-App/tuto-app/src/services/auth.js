@@ -14,10 +14,7 @@ export const register = (data) => {
 export const login = (data) => {
   return api.post('/login', data)
     .then(response => {
-      console.log(response);
-      
       localStorage.setItem('auth_token', response.data.token);
-      // j'ai retirer le set du role 
       return response;
     });
 };

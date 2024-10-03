@@ -8,8 +8,20 @@ const api = axios.create({
 });
 
 export const getUsers = () => {
-    return api.get('/admin/dashboard');
+    return api.get('/admin/dashboard', {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+        },
+    });
 };
+
+export const updateUser = (id, data) => {
+    return api.put(`/admin/users/${id}`, data, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+        },
+    })
+}
 
 export const deleteUser = (id) => {
     return api.delete(`/admin/users/${id}`, {
@@ -18,3 +30,5 @@ export const deleteUser = (id) => {
         },
     });
 };
+
+
