@@ -21,7 +21,6 @@
 <script setup>
 import { computed } from 'vue'
 import { useStore } from 'vuex'
-import { logout } from '@/services/auth';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
@@ -29,8 +28,7 @@ const store = useStore()
 const user_name = computed(() => store.getters.user.first_name)
 
 const handleLogout = async () => {
-   await logout()
-   router.push('/')
+   await store.dispatch('logout')
 }
 
 </script>

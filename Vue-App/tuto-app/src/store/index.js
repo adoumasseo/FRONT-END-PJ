@@ -14,12 +14,29 @@ export default createStore({
   },
   actions: {
     async login({ commit }, credentials) {
-      const response = await auth.login(credentials);
-      commit('SET_USER', response.data.user);
+      try {
+        const response = await auth.login(credentials);
+        commit('SET_USER', response.data.user);
+      } catch (err) {
+        throw new Error('Login failed');
+        console.log(err);
+        
+      }
+
+    },
+    async register({ commit }, data) {
+      try {
+        const response = await auth.register(data);
+        commit('SET_USER', response.data.user);
+      } catch (err) {
+        throw new Error('Registration failed');
+        console.log(err);
+      }
     },
     logout({ commit }) {
       auth.logout();
       commit('SET_USER', null);
+      router.push('/');
     },
   },
   getters: {
