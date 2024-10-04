@@ -4,6 +4,7 @@ import AdminDashboard from '@/pages/AdminDashboard.vue';
 import Login from '@/pages/Login.vue';
 import Register from '@/pages/Register.vue';
 import UserDashboard from '@/pages/UserDashboard.vue';
+import BoardDetails from '@/components/BoardDetails.vue'
 
 
 const routes = [
@@ -22,6 +23,9 @@ const routes = [
   { path: '/login', component: Login },
   { path: '/register', component: Register },
 
+  {
+    path: '/dashboard/users/:boardId', component: BoardDetails 
+  }
 
 ];
 

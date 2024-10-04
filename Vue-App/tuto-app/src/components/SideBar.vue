@@ -45,7 +45,7 @@ const handleLogout = async () => {
     width: 80%;
     font-weight: bold;
     margin-top: 25px;
-    font-size: 20px;
+    font-size: 16px;
 
 }
 
@@ -56,11 +56,11 @@ const handleLogout = async () => {
     height: 40px;
     background-color: rgba(255, 255, 255, 0.829);
     color: black;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .nav-content {
-    width: 75%;
+    width: 80%;
     height: 80px;
     margin-top: 50px;
     padding-left: 15px;
@@ -68,7 +68,8 @@ const handleLogout = async () => {
     justify-content: space-around;
     flex-direction: column;
     background-color: rgba(255, 255, 255, 0.829);
-    border-radius: 20px;
+    border-radius: 10px;
+
 }
 
 .nav-content .link {
@@ -103,7 +104,7 @@ const handleLogout = async () => {
     margin-top: 280px;
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.829);
-    border-radius: 20px;
+    border-radius: 10px;
     font-weight: bold;
 }
 </style>
