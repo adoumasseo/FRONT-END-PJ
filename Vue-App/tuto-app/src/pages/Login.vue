@@ -7,13 +7,15 @@
 
         <label for="password">Password*</label>
         <input type="password" id="password" v-model="password" />
+        <div class="err" v-if="error !== null">
+            {{ error }}
+        </div>
+        <div v-else></div>
 
         <button>Submit</button>
     </form>
-    <div class="err" v-if="error !== null">
-        {{ error }}
-    </div>
-    <div v-else></div>
+
+
     <div class="redirect_login">No account??
         <router-link to="/register" class="link">create one !</router-link>
     </div>
@@ -21,9 +23,8 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
+import { login } from '@/services/auth';
 
-const store = useStore();
 const router = useRouter()
 const error = ref(null)
 
@@ -38,14 +39,11 @@ const handleSubmit = async () => {
     }
 
     try {
-        await store.dispatch('login', data);
+        const response = await login(data);
         router.push('/dashboard/users')
     } catch (err) {
-        error.value = "Invalid credentials"
-        console.log(err);
+        error.value = "Invalids Credentials"
     }
-
-
 }
 </script>
 <style>
@@ -102,8 +100,13 @@ h1 {
 }
 
 .err {
-    width: 70%;
-    margin: 10px auto;
-    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 40px;
+    color: rgb(199, 10, 10);
+    background: rgba(207, 17, 17, 0.164);
+    border-radius: 10px;
 }
 </style>

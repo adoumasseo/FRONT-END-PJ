@@ -15,12 +15,15 @@
 
         <label for="password_confirmation">Confirm Password*</label>
         <input type="password" id="password_confirmation" v-model="password_confirmation" />
+
+        <div class="err" v-if="error !== null">
+            {{ error }}
+        </div>
+        <div v-else></div>
+
         <button>Submit</button>
     </form>
-    <div class="err" v-if="error !== null">
-        {{ error }}
-    </div>
-    <div v-else></div>
+
     <div class="redirect_login">Already have an account ??
         <router-link to="/login" class="link">Connectez-vous!</router-link>
     </div>
@@ -29,9 +32,7 @@
 import { ref } from 'vue'
 import { register } from '@/services/auth';
 import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
 
-const store = useStore();
 const router = useRouter()
 const error = ref(null)
 const first_name = ref("")
@@ -41,28 +42,24 @@ const password = ref("")
 const password_confirmation = ref("")
 
 const checkData = () => {
-    if 
-    (
+    if
+        (
         first_name.value === "" || last_name.value === ""
         || email.value === "" || password.value === ""
-        || password_confirmation.value ===""
-    )  
-    {
+        || password_confirmation.value === ""
+    ) {
         error.value = "All fields are required. Please fill them"
         return 0
     }
-    else if (password.value != password_confirmation.value)
-    {
+    else if (password.value != password_confirmation.value) {
         error.value = "passwords do not match"
         return 0
     }
-    else if (password.value.length < 8)
-    {
+    else if (password.value.length < 8) {
         error.value = "Password too weak"
         return 0
     }
-    else
-    {
+    else {
         error.value = null
         return 1
     }
@@ -79,11 +76,11 @@ const handleSubmit = async () => {
             "profile": null,
         }
 
-        try{
-            await store.dispatch('register', data);
+        try {
+            const response = await register(data);
             router.push('/dashboard/users')
-        }catch (err) { 
-            console.log(err);
+        } catch (err) {
+            error.value = "Email already used"
         }
     }
 
@@ -141,10 +138,15 @@ h1 {
 .redirect_login .link {
     color: white;
 }
-.err
-{
-    width: 70%;
-    margin: 10px auto;
-    color: red;
+
+.err {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 40px;
+    color: rgb(199, 10, 10);
+    background: rgba(207, 17, 17, 0.164);
+    border-radius: 10px;
 }
 </style>

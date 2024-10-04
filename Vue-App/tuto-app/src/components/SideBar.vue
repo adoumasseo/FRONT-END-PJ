@@ -3,8 +3,7 @@
         <div class="header">
             <div>
                 <i class="material-icons">app_registration</i>
-                Notes of Ortniel<span v-if="first_name !== null">{{ first_name }}</span>
-                <span v-else class="title"></span>
+                Notes of Ortniel
             </div>
         </div>
         <div class="nav-content">
@@ -19,18 +18,19 @@
     </div>
 </template>
 <script setup>
-import { computed } from 'vue'
-import { useStore } from 'vuex'
+
+import { logout } from '@/services/auth';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
-const store = useStore()
-const user_name = computed(() => store.getters.user.first_name)
-
 const handleLogout = async () => {
-   await store.dispatch('logout')
+    try {
+        const response = await logout();
+        router.push('/')
+    } catch (err) {
+        console.log("Can't Logout", err);
+    }
 }
-
 </script>
 <style>
 .comp_sideBar {
@@ -94,8 +94,7 @@ const handleLogout = async () => {
     transform: scale(1);
 }
 
-.logout
-{
+.logout {
     display: flex;
     justify-content: space-around;
     align-items: center;
