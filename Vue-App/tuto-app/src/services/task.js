@@ -8,7 +8,7 @@ const api = axios.create({
 });
 
 // Fetch all tasks for a specific board
-export const getTasks = (boardId) => {
+export const getBoardsTasks = (boardId) => {
   return api.get(`user/boards/${boardId}/tasks`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
@@ -17,17 +17,17 @@ export const getTasks = (boardId) => {
 };
 
 // Fetch a single task by its ID
-export const getTaskById = (boardId, taskId) => {
-  return api.get(`user/boards/${boardId}/tasks/${taskId}`, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
-    },
-  });
-};
+// export const getTaskById = (boardId, taskId) => {
+//   return api.get(`user/boards/${boardId}/tasks/${taskId}`, {
+//     headers: {
+//       Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+//     },
+//   });
+// };
 
 // Create a new task for a specific board
 export const createTask = (boardId, data) => {
-  return api.post(`user/boards/${boardId}`, data, {
+  return api.post(`user/tasks/${boardId}`, data, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
     },
